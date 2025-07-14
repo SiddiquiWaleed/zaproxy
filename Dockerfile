@@ -1,8 +1,8 @@
-# Use the official OWASP ZAP image from GitHub Container Registry
+# Use the official OWASP ZAP image
 FROM ghcr.io/zaproxy/zaproxy:latest
 
-# Expose the port ZAP will listen on
-EXPOSE 8080
+# Railway expects apps to run on port 3000
+EXPOSE 3000
 
-# Start ZAP in daemon mode and allow API access from any IP
-CMD ["zap.sh", "-daemon", "-host", "0.0.0.0", "-port", "8080", "-config", "api.addrs.addr.name=.*", "-config", "api.addrs.addr.regex=true"]
+# Start ZAP on port 3000 and allow external API access
+CMD ["zap.sh", "-daemon", "-host", "0.0.0.0", "-port", "3000", "-config", "api.addrs.addr.name=.*", "-config", "api.addrs.addr.regex=true"]
